@@ -1,0 +1,12 @@
+<launch>
+  
+
+  <node name="MyRobotHardwareInterface" pkg="simple_trajectory" type="simple_trajectory_node" output="screen"/>
+  
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"/>
+  
+
+
+</launch>

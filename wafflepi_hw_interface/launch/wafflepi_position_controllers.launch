@@ -1,0 +1,12 @@
+<launch>
+    <rosparam file="$(find simple_trajectory)/config/hardware.yaml" command="load"/>
+    <rosparam file="$(find simple_trajectory)/config/controllers.yaml" command="load"/>
+    <rosparam file="$(find simple_trajectory)/config/joint_limits.yaml" command="load"/>
+    <node name="wafflepi_hardware_interface" pkg="wafflepi_hardware_interface" type="wafflepi_hardware_interface_node" output="screen"/>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/"
+        args="
+            /Wafflepi/controller/state
+            /Wafflepi/controller/position/Wheel_left_joint
+            /Wafflepi/controller/position/Wheel_right_joint
+        "/>
+</launch>
