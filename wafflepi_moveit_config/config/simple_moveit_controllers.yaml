@@ -1,0 +1,9 @@
+controller_list:
+  - name: WafflePi_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - base_joint
+      - wheel_left_joint
+      - wheel_right_joint
