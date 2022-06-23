@@ -21,6 +21,30 @@ Wichtig ist hier vor allem die moveit_planning_execution.launch.
 Diese startet alle nötigen Launch Dateien, welche von MoveIt benötigt werden, um den Turtlebot anzusteuern. 
 Der genaue Inhalt der aufgerufenen Dateien wird im schriftlichen Teil der Arbeit erklärt.
 
-Der Ordner wafflepi_hw_interface enthält 
+Der Ordner wafflepi_hw_interface ist für das Hardware Interface von MoveIt zuständig, um die Verbindung zum Waffle Pi aufzubauen. 
+Entahlten ist hier die Launch Datei wafflepi_contro.launch, welche den Node für das Interface startet.
 
-(Zur Übersicht wurde komplette Moveit config hochgeladen) 
+Um eine Octomap zu erstellen:
+
+  - roscore starten
+  - Waffle Pi starten 
+  - ssh Verbindung aufbauen 
+  - robot.launch auf dem Pi ausführen
+  - octomap.launch in wafflepi_3d_mapping ausführen
+
+Octomap laden:
+
+  - roscore starten
+  - Pfad zur Map Datei in octomap_load launch in load_octomap definieren
+  - octomap_load.launch starten
+
+Navigation mit der Karte:
+
+  - roscore starten
+  - Waffle Pi starten 
+  - ssh Verbindung aufbauen 
+  - robot.launch auf dem Pi ausführen
+  - wafflepi_control.launch in wafflepi_hw_interface ausführen
+  - moveit_planning_execution.launch in wafflepi_moveit_config ausführen
+  - octomap_load.launch ausführen um Karte zu laden 
+
