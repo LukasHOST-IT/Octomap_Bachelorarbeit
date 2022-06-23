@@ -1,0 +1,21 @@
+<launch>
+    
+    <!--    Wird benötigt um die PointCloud von der Astra Kamera in einen Laserscan umzuwandeln -->
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan">
+		
+		<remap from="cloud_in" to="/camera/depth/points"/>
+		<remap from="scan" to="/camera/scan"/>
+		<rosparam command="load" file="$(find wafflepi_3d_mapping)/parameter/point2laser.yaml" />
+	</node>
+ 
+	
+    <arg name="node_start_delay" default="5.0"/>
+    <!-- scan = /scan -->
+    <node pkg="gmapping" type="slam_gmapping" name="gmapping" args="scan:=/scan" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+        <!-- base_link -->
+        <param name="base_frame" value="base_link"/>
+        <param name="odom_frame" value="odom" />
+        <param name="delta" value="0.1" />
+    </node>
+  
+</launch>
