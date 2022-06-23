@@ -1,0 +1,13 @@
+<launch>
+
+    <!-- Pfad zu der gespeicherten Karte -->
+    <arg name="path" default="/home/lukas/astra_ws/src/wafflepi_3d_mapping/maps/final_map.ot"/>
+    
+    <!-- Publishe die Karte an das Topic octomap_full-->
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap_talker" output="screen" args="$(arg path)">
+    </node>
+    <!-- Führe octomap_load.py aus-->
+    <node pkg="load_octomap" type="octomap_load.py" name="moveit_octomap_handler" output="screen">
+    </node>
+
+</launch>
